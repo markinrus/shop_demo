@@ -1,6 +1,4 @@
 import requests
-response = requests.get("https://httpbin.org/get")
-print (response.content)
-response.json()
-response.headers
-response.headers.get("Server")
+  
+result = requests.get("https://bluzir.me/python/course")
+print(result.text)

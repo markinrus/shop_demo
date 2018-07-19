@@ -9,25 +9,10 @@ def get_bot_updates(limit, offset):
     decoded = result.json()
     return decoded['result']
 
-def  sendMes_start(chat_id, text):
+def  sendmes_start(chat_id, text):
     url_t = url + token + '/sendMessage'
     par = {'chat_id': chat_id, 'text': text}
     result = requests.get(url_t, params=par)
-
-def  sendMes_btc(chat_id, text):
-    url_t = url + token + '/sendMessage'
-    par = {'chat_id': chat_id, 'text': text}
-    result = requests.get(url_t, params=par)    
-
-def  sendMes_eth(chat_id, text):
-    url_t = url + token + '/sendMessage'
-    par = {'chat_id': chat_id, 'text': text}
-    result = requests.get(url_t, params=par)    
-
-def  sendMes_err(chat_id, text):
-    url_t = url + token + '/sendMessage'
-    par = {'chat_id': chat_id, 'text': text}
-    result = requests.get(url_t, params=par) 
 
 # Получаем цену BTC в переменную btc_price
 result_cript_btc = requests.get(url_cript_btc)
@@ -53,13 +38,13 @@ for item in result:
     chat_id = item['message']['chat']['id']
 
     if text == '/start':
-        sendMes_start(chat_id, 'Приветствую! \nЧтобы узнать курсы криптовалют как:\n\n Биткоин - введите /btc \n\n Эфириум - введите /eth ')
+        sendmes_start(chat_id, 'Приветствую! \nЧтобы узнать курсы криптовалют как:\n\n Биткоин - введите /btc \n\n Эфириум - введите /eth ')
     elif text == '/btc':
-        sendMes_btc(chat_id, ' Курс биткоина равен: ' + btc_price)
+        sendmes_start(chat_id, ' Курс биткоина равен: ' + btc_price)
     elif text == '/eth':
-        sendMes_eth(chat_id, ' Курс эфириума равен: ' + eth_price)
+        sendmes_start(chat_id, ' Курс эфириума равен: ' + eth_price)
     else:
-        sendMes_err(chat_id, ' Не правильно введена команда! ')
+        sendmes_start(chat_id, ' Не правильно введена команда! ')
     # отмечаем прочитанным
     
     new_offset = update_id + 1
